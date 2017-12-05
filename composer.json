@@ -1,5 +1,5 @@
 {
-  "name": "lokielse/omnipay-alipay",
+  "name": "php-cpm/omnipay-alipay",
   "type": "library",
   "description": "Alipay gateway for Omnipay payment processing library",
   "keywords": [
@@ -11,12 +11,12 @@
     "payment",
     "purchase"
   ],
-  "homepage": "https://github.com/lokielse/omnipay-alipay",
+  "homepage": "https://github.com/php-cpm/omnipay-alipay",
   "license": "MIT",
   "authors": [
     {
-      "name": "Loki Else",
-      "email": "lokielse@gmail.com"
+      "name": "php-cpm",
+      "email": "zouyi@leying365.com"
     }
   ],
   "autoload": {
@@ -29,9 +29,9 @@
     ]
   },
   "require": {
-    "omnipay/common": "~2.0"
+    "omnipay/common": "~2.0|~3.0.x-dev"
   },
   "require-dev": {
-    "omnipay/tests": "~2.0"
+    "omnipay/tests": "~2.0|~3.0.x-dev"
   }
 }
