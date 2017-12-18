@@ -144,6 +144,24 @@ abstract class AbstractLegacyGateway extends AbstractGateway
     /**
      * @return mixed
      */
+    public function getSeller()
+    {
+        return $this->getParameter('seller');
+    }
+
+
+    /**
+     * @param $value
+     *
+     * @return $this
+     */
+    public function setSeller($value)
+    {
+        return $this->setParameter('seller', $value);
+    }
+    /**
+     * @return mixed
+     */
     public function getSellerId()
     {
         return $this->getParameter('seller_id');
