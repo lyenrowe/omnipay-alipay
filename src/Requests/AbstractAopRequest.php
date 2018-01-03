@@ -178,10 +178,9 @@ abstract class AbstractAopRequest extends AbstractRequest
         $url  = $this->getRequestUrl($data);
         $body = $this->getRequestBody();
 
-        $response = $this->httpClient->post($url, [], $body)/**/
-        ->send()->getBody();
+        $response = $this->httpClient->post($url, [], $body);
 
-        $response = $this->decode($response);
+        $response = $this->decode($response->getBody());
 
         return $response;
     }
