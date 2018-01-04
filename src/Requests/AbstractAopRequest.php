@@ -176,9 +176,10 @@ abstract class AbstractAopRequest extends AbstractRequest
     public function sendData($data)
     {
         $url  = $this->getRequestUrl($data);
-        $body = $this->getRequestBody();
+        //@TODO send by query string limits data length
+        // but sign everything together
 
-        $response = $this->httpClient->post($url, [], $body);
+        $response = $this->httpClient->post($url, [], []);
 
         $response = $this->decode($response->getBody());
 
@@ -195,7 +196,6 @@ abstract class AbstractAopRequest extends AbstractRequest
     {
         $queryParams = $data;
 
-        unset($queryParams['biz_content']);
         ksort($queryParams);
 
         $url = sprintf('%s?%s', $this->getEndpoint(), http_build_query($queryParams));
