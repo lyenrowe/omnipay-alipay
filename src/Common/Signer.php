@@ -140,6 +140,11 @@ class Signer
         $privateKey = $this->format($privateKey, self::KEY_TYPE_PRIVATE);
         $res        = openssl_pkey_get_private($privateKey);
 
+        if (!$res) {
+            $message = "应用私钥格式有误，见 https://github.com/lokielse/omnipay-alipay/wiki/FAQs";
+            throw new Exception($message);
+        }
+
         $sign = null;
 
         try {

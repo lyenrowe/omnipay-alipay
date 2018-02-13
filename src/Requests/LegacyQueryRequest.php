@@ -26,7 +26,7 @@ class LegacyQueryRequest extends AbstractLegacyRequest
     {
         $url = sprintf('%s?%s', $this->getEndpoint(), http_build_query($this->getData()));
 
-        $result = $this->httpClient->get($url)->send()->getBody();
+        $result = $this->httpClient->get($url)->getBody();
 
         $xml  = simplexml_load_string($result);
         $json = json_encode($xml);
