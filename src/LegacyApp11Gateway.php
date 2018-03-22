@@ -3,6 +3,7 @@
 namespace Omnipay\Alipay;
 
 use Omnipay\Alipay\Requests\Legacy11QueryRequest;
+use Omnipay\Alipay\Requests\Legacy11RefundRequest;
 use Omnipay\Alipay\Requests\LegacyApp11PurchaseRequest;
 use Omnipay\Alipay\Requests\LegacyCompletePurchaseRequest;
 use Omnipay\Alipay\Requests\LegacyCompleteRefundRequest;
@@ -81,11 +82,11 @@ class LegacyApp11Gateway extends AbstractLegacyGateway
     /**
      * @param array $parameters
      *
-     * @return LegacyRefundRequest
+     * @return Legacy11RefundRequest
      */
     public function refund(array $parameters = [])
     {
-        return $this->createRequest(LegacyRefundRequest::class, $parameters);
+        return $this->createRequest(Legacy11RefundRequest::class, $parameters);
     }
 
 
