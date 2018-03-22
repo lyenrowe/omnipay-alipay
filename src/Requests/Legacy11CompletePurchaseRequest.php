@@ -39,12 +39,12 @@ class Legacy11CompletePurchaseRequest extends AbstractLegacyRequest
      */
     public function sendData($data)
     {
-        $finalData = new \SimpleXMLElement($data["notify_data"]);
+        $finalData = (array) (new \SimpleXMLElement($data["notify_data"]));
         if (! $finalData) {
             throw new InvalidRequestException('The `notify_data` is empty');
         }
-        if ((strval($finalData->trade_status) != "TRADE_FINISHED" && strval($finalData->trade_status) != 'TRADE_SUCCESS')) {
-            throw new InvalidRequestException('The `trade_status` is ' . strval($finalData->trade_status));
+        if ((strval($finalData['trade_status']) != "TRADE_FINISHED" && strval($finalData['trade_status']) != 'TRADE_SUCCESS')) {
+            throw new InvalidRequestException('The `trade_status` is ' . strval($finalData['trade_status']));
         }
         $notify_data = "notify_data=" . $data["notify_data"];
         $sign = $data["sign"];
