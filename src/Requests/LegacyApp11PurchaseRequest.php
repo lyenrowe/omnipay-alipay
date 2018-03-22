@@ -33,6 +33,8 @@ class LegacyApp11PurchaseRequest extends AbstractLegacyRequest
         $sign   = $signer->signWithRSA($this->privateKey);
 
         $resp= $this->parameters->all();
+        $resp['subject'] = rawurlencode($resp['subject']);
+        $resp['body'] = rawurlencode($resp['body']);
         $resp['sign'] = $sign;
         $resp['order_string'] = sprintf(
             '%s&sign="%s"&sign_type="RSA"',
@@ -59,19 +61,28 @@ class LegacyApp11PurchaseRequest extends AbstractLegacyRequest
 
     private function getParamsToSign()
     {
-        $params            = $this->parameters->all();
-        $params['service'] = $this->service;
+        $params = $this->parameters->all();
+        $data =[
+            "partner" => $params['partner'],
+            "seller" => $params['seller'],
+            "out_trade_no" => $params['out_trade_no'],
+            "subject" => $params['subject'],
+            "body" => $params['body'],
+            "total_fee" => $params['total_fee'],
+            "notify_url" => $params['notify_url'],
+        ];
+        $data['service'] = $this->service;
 
-        $params = array_filter($params, 'strlen');
+        $data = array_filter($data, 'strlen');
 
-        $params = array_map(
+        $data = array_map(
             function ($v) {
                 return sprintf('"%s"', $v);
             },
-            $params
+            $data
         );
 
-        return $params;
+        return $data;
     }
 
 
@@ -273,7 +284,7 @@ class LegacyApp11PurchaseRequest extends AbstractLegacyRequest
      */
     public function getSellerId()
     {
-        return $this->getParameter('seller_id');
+        return $this->getParameter('seller');
     }
 
 
@@ -284,7 +295,7 @@ class LegacyApp11PurchaseRequest extends AbstractLegacyRequest
      */
     public function setSellerId($value)
     {
-        return $this->setParameter('seller_id', $value);
+        return $this->setParameter('seller', $value);
     }
 
 
