@@ -30,12 +30,13 @@ class LegacyApp11PurchaseRequest extends AbstractLegacyRequest
         $params = $this->getParamsToSign();
 
         $signer = new Signer($params);
+        $signer->setSort(false);
         $sign   = $signer->signWithRSA($this->privateKey);
 
         $resp= $this->parameters->all();
         $resp['subject'] = rawurlencode($resp['subject']);
         $resp['body'] = rawurlencode($resp['body']);
-        $resp['sign'] = $sign;
+        $resp['sign'] = urlencode(urlencode($sign));
         $resp['order_string'] = sprintf(
             '%s&sign="%s"&sign_type="RSA"',
             $signer->getContentToSign(),
