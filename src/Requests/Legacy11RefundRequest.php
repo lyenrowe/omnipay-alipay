@@ -2,7 +2,7 @@
 
 namespace Omnipay\Alipay\Requests;
 
-use Omnipay\Alipay\Responses\LegacyRefundResponse;
+use Omnipay\Alipay\Responses\Legacy11RefundResponse;
 use Omnipay\Common\Exception\InvalidRequestException;
 use Omnipay\Common\Message\ResponseInterface;
 
@@ -45,17 +45,24 @@ class Legacy11RefundRequest extends AbstractLegacyRequest
         $data = [
             'service'        => $this->service,
             'partner'        => $this->getPartner(),
-            'notify_url'     => $this->getNotifyUrl(),
-            'seller_user_id' => $this->getPartner(),
-            'refund_date'    => $this->getRefundDate(),
             'batch_no'       => $this->getBatchNo(),
+            'refund_date'    => $this->getRefundDate(),
             'batch_num'      => $this->getBatchNum(),
             'detail_data'    => $this->getDetailData(),
+            'notify_url'     => $this->getNotifyUrl(),
             '_input_charset' => $this->getInputCharset()
         ];
 
-        $data['sign']      = $this->sign($data, 'MD5');
-        $data['sign_type'] = 'MD5';
+        ksort($data);
+        reset($data);
+
+        $str = "";
+        foreach ($data as $key => $value) {
+            $str .= $key . "=" . $value . "&";
+        }
+        $arg = trim($str, "&");
+        $data["sign"] = md5($arg . $this->getKey());
+        $data["sign_type"] = 'MD5';
 
         return $data;
     }
@@ -235,9 +242,35 @@ class Legacy11RefundRequest extends AbstractLegacyRequest
      */
     public function sendData($data)
     {
-        return $this->response = new LegacyRefundResponse($this, $data);
+        $url  = $this->getRequestUrl($data);
+
+        $response = $this->httpClient->get($url, [], []);
+
+        $resData = $response->getBody();
+        if (! $resData) {
+            throw new InvalidRequestException('alipay refund API cant reach:' . $url);
+        }
+        $data = (array)(new \SimpleXMLElement($resData));
+
+        return $this->response = new Legacy11RefundResponse($this, $data);
     }
 
+
+    /**
+     * @param $data
+     *
+     * @return string
+     */
+    protected function getRequestUrl($data)
+    {
+        $queryParams = $data;
+
+        ksort($queryParams);
+
+        $url = sprintf('%s?%s', $this->getEndpoint(), http_build_query($queryParams));
+
+        return $url;
+    }
 
     /**
      * @param $value
