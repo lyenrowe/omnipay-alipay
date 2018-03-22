@@ -2,7 +2,11 @@
 
 namespace Omnipay\Alipay;
 
+use Omnipay\Alipay\Requests\Legacy11QueryRequest;
 use Omnipay\Alipay\Requests\LegacyApp11PurchaseRequest;
+use Omnipay\Alipay\Requests\LegacyCompletePurchaseRequest;
+use Omnipay\Alipay\Requests\LegacyCompleteRefundRequest;
+use Omnipay\Alipay\Requests\LegacyRefundRequest;
 
 /**
  * Class LegacyAppGateway
@@ -61,5 +65,48 @@ class LegacyApp11Gateway extends AbstractLegacyGateway
     public function purchase(array $parameters = [])
     {
         return $this->createRequest(LegacyApp11PurchaseRequest::class, $parameters);
+    }
+
+    /**
+     * @param array $parameters
+     *
+     * @return LegacyCompletePurchaseRequest
+     */
+    public function completePurchase(array $parameters = [])
+    {
+        return $this->createRequest(LegacyCompletePurchaseRequest::class, $parameters);
+    }
+
+
+    /**
+     * @param array $parameters
+     *
+     * @return LegacyRefundRequest
+     */
+    public function refund(array $parameters = [])
+    {
+        return $this->createRequest(LegacyRefundRequest::class, $parameters);
+    }
+
+
+    /**
+     * @param array $parameters
+     *
+     * @return LegacyCompleteRefundRequest
+     */
+    public function completeRefund(array $parameters = [])
+    {
+        return $this->createRequest(LegacyCompleteRefundRequest::class, $parameters);
+    }
+
+
+    /**
+     * @param array $parameters
+     *
+     * @return Legacy11QueryRequest
+     */
+    public function query(array $parameters = [])
+    {
+        return $this->createRequest(Legacy11QueryRequest::class, $parameters);
     }
 }
