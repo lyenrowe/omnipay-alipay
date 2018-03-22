@@ -163,8 +163,8 @@ class Legacy11RefundRequest extends LegacyRefundRequest
         foreach ($this->getRefundItems() as $item) {
             $item = (array) $item;
 
-            if (! isset($item['out_trade_no'])) {
-                throw new InvalidRequestException('The field `out_trade_no` is not exist in item');
+            if (! isset($item['trade_no'])) {
+                throw new InvalidRequestException('The field `trade_no` is not exist in item');
             }
 
             if (! isset($item['amount'])) {
@@ -175,7 +175,7 @@ class Legacy11RefundRequest extends LegacyRefundRequest
                 throw new InvalidRequestException('The field `reason` is not exist in item');
             }
 
-            $strings[] = implode('^', [$item['out_trade_no'], $item['amount'], $item['reason'] ?: '管理员退款']);
+            $strings[] = implode('^', [$item['trade_no'], $item['amount'], $item['reason'] ?: '管理员退款']);
         }
 
         return implode('#', $strings);
