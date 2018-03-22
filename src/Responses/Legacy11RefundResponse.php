@@ -28,6 +28,11 @@ class Legacy11RefundResponse extends AbstractLegacyResponse implements RedirectR
         return true;
     }
 
+    public function getMessage()
+    {
+        $data = $this->getData();
+        return $data['error'];
+    }
 
     public function getRedirectUrl()
     {

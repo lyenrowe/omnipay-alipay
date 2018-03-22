@@ -11,11 +11,12 @@ use Omnipay\Common\Message\ResponseInterface;
  * @package Omnipay\Alipay\Requests
  * @link    https://doc.open.alipay.com/docs/doc.htm?treeId=66&articleId=103600&docType=1
  */
-class Legacy11RefundRequest extends AbstractLegacyRequest
+class Legacy11RefundRequest extends LegacyRefundRequest
 {
     protected $service = 'refund_fastpay_by_platform_nopwd';
 
 
+    protected $reqData;
     /**
      * Get the raw data array for this message. The format of this varies from gateway to
      * gateway, but will usually be either an associative array, or a SimpleXMLElement.
@@ -24,6 +25,9 @@ class Legacy11RefundRequest extends AbstractLegacyRequest
      */
     public function getData()
     {
+        if ($this->reqData) {
+            return $this->reqData;
+        }
         $this->setDefaults();
 
         $this->validate(
@@ -64,6 +68,7 @@ class Legacy11RefundRequest extends AbstractLegacyRequest
         $data["sign"] = md5($arg . $this->getKey());
         $data["sign_type"] = 'MD5';
 
+        $this->reqData = $data;
         return $data;
     }
 
@@ -170,7 +175,7 @@ class Legacy11RefundRequest extends AbstractLegacyRequest
                 throw new InvalidRequestException('The field `reason` is not exist in item');
             }
 
-            $strings[] = implode('^', [$item['out_trade_no'], $item['amount'], $item['reason']]);
+            $strings[] = implode('^', [$item['out_trade_no'], $item['amount'], $item['reason'] ?: '管理员退款']);
         }
 
         return implode('#', $strings);
