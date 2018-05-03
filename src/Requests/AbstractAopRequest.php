@@ -173,17 +173,37 @@ abstract class AbstractAopRequest extends AbstractRequest
     }
 
 
+    /**
+     * @param mixed $data
+     *
+     * @return mixed|\Omnipay\Common\Message\ResponseInterface|\Psr\Http\Message\StreamInterface
+     * @throws \Psr\Http\Client\Exception\NetworkException
+     * @throws \Psr\Http\Client\Exception\RequestException
+     */
     public function sendData($data)
     {
-        $url  = $this->getRequestUrl($data);
-        //@TODO send by query string limits data length
-        // but sign everything together
+        $method = $this->getRequestMethod();
+        $url    = $this->getRequestUrl($data);
+        $body   = $this->getRequestBody();
 
-        $response = $this->httpClient->post($url, [], []);
+        $headers = [
+            'Content-Type' => 'application/x-www-form-urlencoded'
+        ];
 
-        $response = $this->decode($response->getBody());
+        $response = $this->httpClient->request($method, $url, $headers, $body);
 
-        return $response;
+        $payload = $this->decode($response->getBody());
+
+        return $payload;
+    }
+
+
+    /**
+     * @return string
+     */
+    protected function getRequestMethod()
+    {
+        return 'POST';
     }
 
 
@@ -196,6 +216,7 @@ abstract class AbstractAopRequest extends AbstractRequest
     {
         $queryParams = $data;
 
+        unset($queryParams['biz_content']);
         ksort($queryParams);
 
         $url = sprintf('%s?%s', $this->getEndpoint(), http_build_query($queryParams));
