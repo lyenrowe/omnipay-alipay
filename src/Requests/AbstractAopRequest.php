@@ -190,7 +190,7 @@ abstract class AbstractAopRequest extends AbstractRequest
             'Content-Type' => 'application/x-www-form-urlencoded'
         ];
 
-        $response = $this->httpClient->request($method, $url, $headers, $body);
+        $response = $this->httpClient->send($method, $url, $headers, $body);
 
         $payload = $this->decode($response->getBody());
 

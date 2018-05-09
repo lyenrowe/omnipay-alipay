@@ -9,7 +9,9 @@
 **Alipay driver for the Omnipay PHP payment processing library**
 
 [Omnipay](https://github.com/omnipay/omnipay) is a framework agnostic, multi-gateway payment
-processing library for PHP. This package implements Alipay support for Omnipay.
+processing library for PHP 5.6. This package implements Alipay support for Omnipay.
+
+this lib now base on omnipay common v3.0-alpha.1 to be able stay on php 5.6
 
 ## Installation
 
