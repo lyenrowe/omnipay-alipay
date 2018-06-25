@@ -2,6 +2,7 @@
 
 namespace Omnipay\Alipay;
 
+use Omnipay\Alipay\Requests\AopTradePayRequest;
 use Omnipay\Alipay\Requests\AopTradePreCreateRequest;
 
 /**
@@ -19,7 +20,7 @@ class AopF2FGateway extends AbstractAopGateway
      */
     public function getName()
     {
-        return 'Alipay Face To Face Gateway';
+        return 'Alipay Face To Face POS Gateway';
     }
 
     /**
@@ -29,6 +30,6 @@ class AopF2FGateway extends AbstractAopGateway
      */
     public function purchase(array $parameters = [])
     {
-        return $this->createRequest(AopTradePreCreateRequest::class, $parameters);
+        return $this->createRequest(AopTradePayRequest::class, $parameters);
     }
 }
