@@ -10,7 +10,7 @@ use Omnipay\Alipay\Requests\AopTradePreCreateRequest;
  * @package Omnipay\Alipay
  * @link https://doc.open.alipay.com/docs/doc.htm?treeId=194&articleId=105072&docType=1
  */
-class AopF2FGateway extends AbstractAopGateway
+class AopPosGateway extends AbstractAopGateway
 {
 
     /**
