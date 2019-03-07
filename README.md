@@ -88,7 +88,7 @@ If you want to keep up to date with release anouncements, discuss ideas for the 
 or ask more detailed questions, there is also a [mailing list](https://groups.google.com/forum/#!forum/omnipay) which
 you can subscribe to.
 
-If you believe you have found a bug, please report it using the [GitHub issue tracker](https://github.com/php-cpm/omnipay-alipay/issues),
+If you believe you have found a bug, please report it using the [GitHub issue tracker](https://github.com/lyenrowe/omnipay-alipay/issues),
 or better yet, fork the library and submit a pull request.
 
 [ico-version]: https://img.shields.io/packagist/v/php-cpm/omnipay-alipay.svg
@@ -99,7 +99,7 @@ or better yet, fork the library and submit a pull request.
 [ico-code-quality]: https://img.shields.io/scrutinizer/g/php-cpm/omnipay-alipay.svg
 [ico-downloads]: https://img.shields.io/packagist/dt/php-cpm/omnipay-alipay.svg
 
-[link-packagist]: https://packagist.org/packages/php-cpm/omnipay-alipay
+[link-packagist]: https://packagist.org/packages/lyenrowe/omnipay-alipay
 [link-travis]: https://travis-ci.org/php-cpm/omnipay-alipay
 [link-scrutinizer]: https://scrutinizer-ci.com/g/php-cpm/omnipay-alipay/code-structure
 [link-code-coverage]: https://codecov.io/github/php-cpm/omnipay-alipay?branch=master
