@@ -18,7 +18,7 @@ this lib now base on omnipay common v3.0-alpha.1 to be able stay on php 5.6
 Omnipay is installed via [Composer](http://getcomposer.org/). To install, simply add it
 to your `composer.json` file:
 
-    "php-cpm/omnipay-alipay": "^3.0",
+    "lyenrowe/omnipay-alipay": "^3.0",
 
 And run composer to update your dependencies:
 
