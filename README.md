@@ -104,7 +104,7 @@ or better yet, fork the library and submit a pull request.
 [link-scrutinizer]: https://scrutinizer-ci.com/g/php-cpm/omnipay-alipay/code-structure
 [link-code-coverage]: https://codecov.io/github/php-cpm/omnipay-alipay?branch=master
 [link-code-quality]: https://scrutinizer-ci.com/g/php-cpm/omnipay-alipay
-[link-downloads]: https://packagist.org/packages/php-cpm/omnipay-alipay
+[link-downloads]: https://packagist.org/packages/lyenrowe/omnipay-alipay
 [link-author]: https://github.com/php-cpm
 [link-contributors]: ../../contributors
 
