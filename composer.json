@@ -1,5 +1,5 @@
 {
-  "name": "php-cpm/omnipay-alipay",
+  "name": "lyenrowe/omnipay-alipay",
   "type": "library",
   "description": "Alipay gateway for Omnipay payment processing library",
   "keywords": [
@@ -11,12 +11,12 @@
     "payment",
     "purchase"
   ],
-  "homepage": "https://github.com/php-cpm/omnipay-alipay",
+  "homepage": "https://github.com/lyenrowe/omnipay-alipay",
   "license": "MIT",
   "authors": [
     {
-      "name": "php-cpm",
-      "email": "zouyi@leying365.com"
+      "name": "lyenrowe",
+      "email": "luolaiqing@leying365.com"
     }
   ],
   "autoload": {
